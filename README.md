@@ -12,3 +12,35 @@ express,
 cors,
 Knex,
 sqlite3 
+
+## Instalação
+
+Para executar o **servidor da api**, siga os passos abaixo:
+
+- Clone este repositório:
+
+```
+git clone https://github.com/remulocosta/backend-OmniStack11.git backend
+```
+
+- Acesse a pasta `backend`:
+
+```
+cd backend
+```
+
+- Execute o comando abaixo para instalar as dependências:
+
+```
+npm install
+or
+yarn install
+```
+
+- Agora é só rodar o comando:
+
+```
+npm start
+or
+yarn start
+```
