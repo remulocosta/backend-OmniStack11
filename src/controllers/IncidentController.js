@@ -1,12 +1,11 @@
 const connection = require('../database/connection');
 
 module.exports = {
-
   async index(req, res) {
     const { page = 1 } = req.query;
 
     const [count] = await connection('incidents').count();
-    console.log(count);
+    //  console.log(count);
 
     const incidents = await connection('incidents')
       .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
@@ -18,7 +17,7 @@ module.exports = {
         'ongs.email',
         'ongs.whatsapp',
         'ongs.city',
-        'ongs.uf'
+        'ongs.uf',
       ]);
 
     res.header('X-Total-Count', count['count(*)']);
@@ -49,6 +48,10 @@ module.exports = {
       .select('ong_id')
       .first();
 
+    if (!incident) {
+      return res.status(401).json({ error: 'Incident not found.' });
+    }
+
     if (incident.ong_id !== ong_id) {
       return res.status(401).json({ error: 'Operation not permitted.' });
     }
@@ -56,5 +59,5 @@ module.exports = {
     await connection('incidents').where('id', id).delete();
 
     return res.status(204).send();
-  }
+  },
 };

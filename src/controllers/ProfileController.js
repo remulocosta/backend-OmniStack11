@@ -9,5 +9,5 @@ module.exports = {
       .select('*');
 
     return res.json(incidents);
-  }
-}
+  },
+};

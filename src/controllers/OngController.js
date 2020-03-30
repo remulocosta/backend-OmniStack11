@@ -1,8 +1,8 @@
 const crypto = require('crypto');
+
 const connection = require('../database/connection');
 
 module.exports = {
-
   async index(req, res) {
     const ongs = await connection('ongs').select('*');
 
@@ -20,9 +20,9 @@ module.exports = {
       email,
       whatsapp,
       city,
-      uf
+      uf,
     });
 
     return res.json({ id });
-  }
-}
+  },
+};
